@@ -1,38 +1,32 @@
 <?php
 
-namespace AsyncAws\Ses\Input;
+namespace AsyncAws\Ses\ValueObject;
 
 class Destination
 {
     /**
      * An array that contains the email addresses of the "To" recipients for the email.
-     *
-     * @var string[]
      */
     private $ToAddresses;
 
     /**
      * An array that contains the email addresses of the "CC" (carbon copy) recipients for the email.
-     *
-     * @var string[]
      */
     private $CcAddresses;
 
     /**
      * An array that contains the email addresses of the "BCC" (blind carbon copy) recipients for the email.
-     *
-     * @var string[]
      */
     private $BccAddresses;
 
     /**
      * @param array{
-     *   ToAddresses?: string[],
-     *   CcAddresses?: string[],
-     *   BccAddresses?: string[],
+     *   ToAddresses?: null|string[],
+     *   CcAddresses?: null|string[],
+     *   BccAddresses?: null|string[],
      * } $input
      */
-    public function __construct(array $input = [])
+    public function __construct(array $input)
     {
         $this->ToAddresses = $input['ToAddresses'] ?? [];
         $this->CcAddresses = $input['CcAddresses'] ?? [];
@@ -66,36 +60,6 @@ class Destination
     public function getToAddresses(): array
     {
         return $this->ToAddresses;
-    }
-
-    /**
-     * @param string[] $value
-     */
-    public function setBccAddresses(array $value): self
-    {
-        $this->BccAddresses = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string[] $value
-     */
-    public function setCcAddresses(array $value): self
-    {
-        $this->CcAddresses = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string[] $value
-     */
-    public function setToAddresses(array $value): self
-    {
-        $this->ToAddresses = $value;
-
-        return $this;
     }
 
     public function validate(): void

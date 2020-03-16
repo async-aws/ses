@@ -1,6 +1,6 @@
 <?php
 
-namespace AsyncAws\Ses\Input;
+namespace AsyncAws\Ses\ValueObject;
 
 use AsyncAws\Core\Exception\InvalidArgument;
 
@@ -8,10 +8,6 @@ class RawMessage
 {
     /**
      * The raw email message. The message has to meet the following criteria:.
-     *
-     * @required
-     *
-     * @var string|null
      */
     private $Data;
 
@@ -30,16 +26,9 @@ class RawMessage
         return $input instanceof self ? $input : new self($input);
     }
 
-    public function getData(): ?string
+    public function getData(): string
     {
         return $this->Data;
-    }
-
-    public function setData(?string $value): self
-    {
-        $this->Data = $value;
-
-        return $this;
     }
 
     public function validate(): void

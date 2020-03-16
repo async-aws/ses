@@ -1,38 +1,32 @@
 <?php
 
-namespace AsyncAws\Ses\Input;
+namespace AsyncAws\Ses\ValueObject;
 
 class EmailContent
 {
     /**
      * The simple email message. The message consists of a subject and a message body.
-     *
-     * @var Message|null
      */
     private $Simple;
 
     /**
      * The raw email message. The message has to meet the following criteria:.
-     *
-     * @var RawMessage|null
      */
     private $Raw;
 
     /**
      * The template to use for the email message.
-     *
-     * @var Template|null
      */
     private $Template;
 
     /**
      * @param array{
-     *   Simple?: \AsyncAws\Ses\Input\Message|array,
-     *   Raw?: \AsyncAws\Ses\Input\RawMessage|array,
-     *   Template?: \AsyncAws\Ses\Input\Template|array,
+     *   Simple?: null|\AsyncAws\Ses\ValueObject\Message|array,
+     *   Raw?: null|\AsyncAws\Ses\ValueObject\RawMessage|array,
+     *   Template?: null|\AsyncAws\Ses\ValueObject\Template|array,
      * } $input
      */
-    public function __construct(array $input = [])
+    public function __construct(array $input)
     {
         $this->Simple = isset($input['Simple']) ? Message::create($input['Simple']) : null;
         $this->Raw = isset($input['Raw']) ? RawMessage::create($input['Raw']) : null;
@@ -57,27 +51,6 @@ class EmailContent
     public function getTemplate(): ?Template
     {
         return $this->Template;
-    }
-
-    public function setRaw(?RawMessage $value): self
-    {
-        $this->Raw = $value;
-
-        return $this;
-    }
-
-    public function setSimple(?Message $value): self
-    {
-        $this->Simple = $value;
-
-        return $this;
-    }
-
-    public function setTemplate(?Template $value): self
-    {
-        $this->Template = $value;
-
-        return $this;
     }
 
     public function validate(): void

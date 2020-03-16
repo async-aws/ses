@@ -1,6 +1,6 @@
 <?php
 
-namespace AsyncAws\Ses\Input;
+namespace AsyncAws\Ses\ValueObject;
 
 use AsyncAws\Core\Exception\InvalidArgument;
 
@@ -11,25 +11,18 @@ class Message
      * non-ASCII characters in the subject line by using encoded-word syntax, as described in RFC 2047.
      *
      * @see https://tools.ietf.org/html/rfc2047
-     * @required
-     *
-     * @var Content|null
      */
     private $Subject;
 
     /**
      * The body of the message. You can specify an HTML version of the message, a text-only version of the message, or both.
-     *
-     * @required
-     *
-     * @var Body|null
      */
     private $Body;
 
     /**
      * @param array{
-     *   Subject: \AsyncAws\Ses\Input\Content|array,
-     *   Body: \AsyncAws\Ses\Input\Body|array,
+     *   Subject: \AsyncAws\Ses\ValueObject\Content|array,
+     *   Body: \AsyncAws\Ses\ValueObject\Body|array,
      * } $input
      */
     public function __construct(array $input)
@@ -43,28 +36,14 @@ class Message
         return $input instanceof self ? $input : new self($input);
     }
 
-    public function getBody(): ?Body
+    public function getBody(): Body
     {
         return $this->Body;
     }
 
-    public function getSubject(): ?Content
+    public function getSubject(): Content
     {
         return $this->Subject;
-    }
-
-    public function setBody(?Body $value): self
-    {
-        $this->Body = $value;
-
-        return $this;
-    }
-
-    public function setSubject(?Content $value): self
-    {
-        $this->Subject = $value;
-
-        return $this;
     }
 
     public function validate(): void

@@ -1,6 +1,6 @@
 <?php
 
-namespace AsyncAws\Ses\Input;
+namespace AsyncAws\Ses\ValueObject;
 
 use AsyncAws\Core\Exception\InvalidArgument;
 
@@ -8,19 +8,11 @@ class MessageTag
 {
     /**
      * The name of the message tag. The message tag name has to meet the following criteria:.
-     *
-     * @required
-     *
-     * @var string|null
      */
     private $Name;
 
     /**
      * The value of the message tag. The message tag value has to meet the following criteria:.
-     *
-     * @required
-     *
-     * @var string|null
      */
     private $Value;
 
@@ -41,28 +33,14 @@ class MessageTag
         return $input instanceof self ? $input : new self($input);
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->Name;
     }
 
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->Value;
-    }
-
-    public function setName(?string $value): self
-    {
-        $this->Name = $value;
-
-        return $this;
-    }
-
-    public function setValue(?string $value): self
-    {
-        $this->Value = $value;
-
-        return $this;
     }
 
     public function validate(): void

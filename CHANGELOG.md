@@ -2,6 +2,8 @@
 
 ## NOT RELEASED
 
+## 1.17.0
+
 ### Added
 
 - AWS api-change: Amazon SES now supports per-message tracking overrides. You can use the new ConfigurationOverrides parameter in SendEmail and SendBulkEmail to enable or disable open and click tracking for individual messages without changing your account-level or configuration set settings.
